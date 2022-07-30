@@ -46,7 +46,6 @@ var app = function () {
             return;
         }
     }
-    console.debug(rid, 'douyu rid');
     var Clarities = ['全局默认最高画质', '全局默认最低画质'];
     var selectedClarity = GM_getValue(rid);
     var defaultClarity = GM_getValue('defaultClarity');
