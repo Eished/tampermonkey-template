@@ -5,7 +5,7 @@
 // @name:ja             Douyu 助手
 // @name:ko             Douyu 조수
 // @namespace           https://github.com/Eished/douyu-helper
-// @version             2022.07.30.2
+// @version             2022.07.31
 // @description         斗鱼直播自动切换画质，全局设置最高画质或最低画质，单独设置每个直播间：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度。
 // @author              Eished
 // @copyright           Eished
@@ -25,22 +25,32 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 632:
+/***/ 752:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-function default_1() {
+var app = function () {
     var videoSub = document.querySelector('.layout-Player-videoSub');
-    var results = window.location.href.match(/[\d]{6}/);
-    if (!videoSub || !results) {
+    if (!videoSub) {
         return;
     }
-    var rid = results[0];
+    var rid = new URLSearchParams(window.location.search).get('rid');
+    if (!rid) {
+        var results = window.location.pathname.match(/[\d]{1,10}/);
+        if (results) {
+            rid = results[0];
+        }
+        else {
+            console.debug('未找到直播间');
+            return;
+        }
+    }
+    console.debug(rid, 'douyu rid');
     var Clarities = ['全局默认最高画质', '全局默认最低画质'];
     var selectedClarity = GM_getValue(rid);
     var defaultClarity = GM_getValue('defaultClarity');
-    var scanClarity = function (list) {
+    var selectClarity = function (list) {
         var notFoundCount = 0;
         list.forEach(function (li) {
             var availableClarity = li.innerText;
@@ -84,27 +94,26 @@ function default_1() {
             });
         });
     };
-    var observer = new MutationObserver(callback);
-    observer.observe(videoSub, {
-        childList: true,
-        subtree: true,
-    });
-    function callback() {
+    var observer = new MutationObserver(function () {
         var controller = videoSub === null || videoSub === void 0 ? void 0 : videoSub.querySelector("[value=\"\u753B\u8D28 \"]");
         if (controller) {
             observer.disconnect();
             var ul = controller.nextElementSibling;
             var list = ul === null || ul === void 0 ? void 0 : ul.querySelectorAll('li');
-            list ? scanClarity(list) : console.error('斗鱼直播助手：未找到画质选项');
+            list ? selectClarity(list) : console.debug('斗鱼直播助手：未找到画质选项');
         }
-    }
-}
-exports["default"] = default_1;
+    });
+    observer.observe(videoSub, {
+        childList: true,
+        subtree: true,
+    });
+};
+exports["default"] = app;
 
 
 /***/ }),
 
-/***/ 629:
+/***/ 607:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -112,7 +121,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var app_1 = __importDefault(__webpack_require__(632));
+var app_1 = __importDefault(__webpack_require__(752));
 (0, app_1.default)();
 
 
@@ -149,7 +158,7 @@ var app_1 = __importDefault(__webpack_require__(632));
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(629);
+/******/ 	var __webpack_exports__ = __webpack_require__(607);
 /******/ 	
 /******/ })()
 ;

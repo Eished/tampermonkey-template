@@ -24,7 +24,7 @@ const src = relativePath('src');
 module.exports = (env) => {
   console.log(env);
   const options = {
-    entry: './src/index.tsx',
+    entry: './src/index.ts',
     output: {
       path: resolve(__dirname, 'dist'),
       filename: env.production ? 'douyu.user.js' : 'douyu.dev.user.js',
@@ -57,7 +57,7 @@ module.exports = (env) => {
           ],
         },
         {
-          test: /\.tsx?$/,
+          test: /\.(tsx|ts)?$/,
           use: 'ts-loader',
           exclude: /node_modules/,
           include: [src],
@@ -150,7 +150,7 @@ module.exports = (env) => {
       port: 8080,
       hot: true,
       open: true,
-      watchFiles: ['src/**/*.tsx'], // 无效
+      watchFiles: ['src/**/*.ts'], // 无效
     };
   }
 
