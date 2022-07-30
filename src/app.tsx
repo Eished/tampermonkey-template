@@ -2,12 +2,10 @@ export default function () {
   const videoSub = document.querySelector('.layout-Player-videoSub');
   const results = window.location.href.match(/[\d]{6}/);
   if (!videoSub || !results) {
-    console.error('斗鱼直播助手：未找到直播间或播放器');
     return;
   }
 
   const rid = results[0];
-  console.log(rid, 'douyu rid');
   const Clarities = ['全局默认最高画质', '全局默认最低画质'];
   const selectedClarity: string | undefined = GM_getValue(rid);
   const defaultClarity: number | undefined = GM_getValue('defaultClarity');

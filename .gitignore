@@ -23,7 +23,7 @@
 # Recommended template: Node.gitignore
 
 node_modules/
-dist/
+dist/douyu.dev.user.js
 npm-debug.log
 yarn-error.log
 
