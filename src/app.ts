@@ -13,7 +13,6 @@ const app = () => {
       return;
     }
   }
-  console.debug(rid, 'douyu rid');
 
   const Clarities = ['全局默认最高画质', '全局默认最低画质'];
   const selectedClarity: string | undefined = GM_getValue(rid);
