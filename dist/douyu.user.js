@@ -68,13 +68,7 @@ var app = function (rid, videoSub) {
             GM_registerMenuCommand(availableClarity, function () { return clickClarity(li, true); });
         });
         // 选择默认画质
-        if (selectedClarity === Clarities[0]) {
-            clickClarity(list[0]);
-        }
-        else if (selectedClarity === Clarities[1]) {
-            clickClarity(list[list.length - 1]);
-        }
-        else if (notFoundCount === list.length) {
+        if (notFoundCount === list.length) {
             if (defaultClarity === 0) {
                 clickClarity(list[list.length - 1]);
             }
