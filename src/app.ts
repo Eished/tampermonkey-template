@@ -24,20 +24,25 @@ const app = () => {
     }
   };
 
+  const clickLi = (li: HTMLLIElement, availableClarity: string) => {
+    GM_setValue(rid!, availableClarity);
+    clickClarity(li);
+  };
+
   const selectClarity = (list: NodeListOf<HTMLLIElement>) => {
     let notFoundCount = 0;
     list.forEach((li) => {
       const availableClarity = li.innerText;
-      if (!availableClarity) return;
-      GM_registerMenuCommand(availableClarity, () => {
-        GM_setValue(rid!, availableClarity);
-        clickClarity(li);
-      });
+      if (!availableClarity) {
+        return;
+      }
       if (selectedClarity === availableClarity) {
         clickClarity(li);
       } else {
         notFoundCount++;
       }
+      li.addEventListener('click', () => clickLi(li, availableClarity));
+      GM_registerMenuCommand(availableClarity, () => clickLi(li, availableClarity));
     });
 
     if (selectedClarity === Clarities[0]) {
