@@ -4,12 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .selected-123 {
+        background-color: cornflowerblue;
+      }
+    </style>
   </head>
 
   <body>
-    <div>Hello TamperMonkey</div>
-    <p class="avatar_info">
-      <a href="#">test</a>
-    </p>
+    <h1>斗鱼直播助手</h1>
+    <h3>清晰度模拟：</h3>
+    <div class="layout-Player-videoSub">
+      <div value="画质 ">画质</div>
+      <ul>
+        <li>原画1080P60</li>
+        <li>蓝光</li>
+        <li>超清</li>
+        <li class="selected-123">高清</li>
+      </ul>
+    </div>
+    <script>
+      const videoSub = document.querySelector('.layout-Player-videoSub');
+      if (!window.location.search) {
+        window.location.search = '?rid=1';
+      }
+      const list = document.querySelectorAll('li');
+      list.forEach(() => {
+        document.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (e.target.tagName === 'LI') {
+            list.forEach((other) => {
+              other.className = '';
+            });
+            e.target.className = 'selected-123';
+          }
+        });
+      });
+      setTimeout(() => {
+        const div = document.createElement('div');
+        videoSub.append(div);
+      }, 1000);
+    </script>
   </body>
 </html>

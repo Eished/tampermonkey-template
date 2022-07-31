@@ -5,10 +5,10 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "yarn style",
+      "command": "yarn start",
       "group": "build",
       "problemMatcher": [],
-      "label": "yarn:style"
+      "label": "yarn:start"
     },
     {
       "type": "shell",
@@ -19,9 +19,9 @@
     },
     {
       "type": "shell",
-      "label": "start: style & dev",
+      "label": "start & dev",
       "group": "build",
-      "dependsOn": ["yarn:style", "yarn:dev"]
+      "dependsOn": ["yarn:start", "yarn:dev"]
     }
   ]
 }

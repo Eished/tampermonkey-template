@@ -9,7 +9,7 @@ const app = () => {
     if (results) {
       rid = results[0];
     } else {
-      console.debug('未找到直播间');
+      console.debug('斗鱼直播助手：未找到直播间');
       return;
     }
   }
@@ -18,6 +18,12 @@ const app = () => {
   const selectedClarity: string | undefined = GM_getValue(rid);
   const defaultClarity: number | undefined = GM_getValue('defaultClarity');
 
+  const clickClarity = (li: HTMLLIElement) => {
+    if (!li.className.includes('selected')) {
+      li.click();
+    }
+  };
+
   const selectClarity = (list: NodeListOf<HTMLLIElement>) => {
     let notFoundCount = 0;
     list.forEach((li) => {
@@ -25,34 +31,34 @@ const app = () => {
       if (!availableClarity) return;
       GM_registerMenuCommand(availableClarity, () => {
         GM_setValue(rid!, availableClarity);
-        li.click();
+        clickClarity(li);
       });
       if (selectedClarity === availableClarity) {
-        li.click();
+        clickClarity(li);
       } else {
         notFoundCount++;
       }
     });
 
     if (selectedClarity === Clarities[0]) {
-      list[0].click();
+      clickClarity(list[0]);
     } else if (selectedClarity === Clarities[1]) {
-      list[list.length - 1].click();
+      clickClarity(list[list.length - 1]);
     } else if (notFoundCount === list.length) {
       if (defaultClarity === 0) {
-        list[list.length - 1].click();
+        clickClarity(list[list.length - 1]);
       } else {
-        list[0].click();
+        clickClarity(list[0]);
       }
     }
 
     Clarities.forEach((clarity, index) => {
       GM_registerMenuCommand(clarity, () => {
         if (index === 0) {
-          list[index].click();
+          clickClarity(list[0]);
           GM_setValue('defaultClarity', 1);
         } else {
-          list[list.length - 1].click();
+          clickClarity(list[list.length - 1]);
           GM_setValue('defaultClarity', 0);
         }
       });

@@ -23,7 +23,9 @@
 # Recommended template: Node.gitignore
 
 node_modules/
-dist/douyu.dev.user.js
+# 先提交 dist 文件夹，再忽略就可以自动部署到主分支 dist
+# dist/douyu.dev.user.js 
+dist/
 npm-debug.log
 yarn-error.log
 

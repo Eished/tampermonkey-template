@@ -6,7 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const commonMeta = require('./src/common.meta.json');
 
 const year = new Date().getFullYear();
-const getBanner = (meta) => `// ==UserScript==\n${Object.entries(Object.assign(meta, commonMeta))
+const getBanner = (meta) => `// ==UserScript==\n${Object.entries(Object.assign(commonMeta, meta))
   .map(([key, value]) => {
     if (Array.isArray(value)) {
       return value.map((item) => `// @${key.padEnd(20, ' ')}${item}`).join('\n');
@@ -23,6 +23,15 @@ const src = relativePath('src');
 
 module.exports = (env) => {
   console.log(env);
+
+  const banner = {};
+  if (!env.production) {
+    banner.name = '斗鱼直播助手-dev';
+    banner.namespace = 'douyu-helper-dev';
+    banner.match = ['*://*.douyu.com/*', '*://*.localhost/*'];
+    banner.require = ['file://\\\\wsl$\\Ubuntu-20.04\\home\\eis\\web\\douyu-helper\\dist\\douyu.dev.user.js'];
+  }
+
   const options = {
     entry: './src/index.ts',
     output: {
@@ -134,7 +143,7 @@ module.exports = (env) => {
     // devtool: 'source-map',
     plugins: [
       new webpack.BannerPlugin({
-        banner: getBanner({ name: env.production ? '斗鱼直播助手' : '斗鱼直播助手-dev' }),
+        banner: getBanner(banner),
         raw: true,
         entryOnly: true,
       }),
@@ -150,7 +159,7 @@ module.exports = (env) => {
       port: 8080,
       hot: true,
       open: true,
-      watchFiles: ['src/**/*.ts'], // 无效
+      watchFiles: ['src/**/*.ts', 'pulic/'], // 无效
     };
   }
 
