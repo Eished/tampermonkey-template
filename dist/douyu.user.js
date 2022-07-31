@@ -38,52 +38,60 @@ var app = function () {
             rid = results[0];
         }
         else {
-            console.debug('未找到直播间');
+            console.debug('斗鱼直播助手：未找到直播间');
             return;
         }
     }
     var Clarities = ['全局默认最高画质', '全局默认最低画质'];
     var selectedClarity = GM_getValue(rid);
     var defaultClarity = GM_getValue('defaultClarity');
+    var clickClarity = function (li) {
+        if (!li.className.includes('selected')) {
+            li.click();
+        }
+    };
+    var clickLi = function (li, availableClarity) {
+        GM_setValue(rid, availableClarity);
+        clickClarity(li);
+    };
     var selectClarity = function (list) {
         var notFoundCount = 0;
         list.forEach(function (li) {
             var availableClarity = li.innerText;
-            if (!availableClarity)
+            if (!availableClarity) {
                 return;
-            GM_registerMenuCommand(availableClarity, function () {
-                GM_setValue(rid, availableClarity);
-                li.click();
-            });
+            }
             if (selectedClarity === availableClarity) {
-                li.click();
+                clickClarity(li);
             }
             else {
                 notFoundCount++;
             }
+            li.addEventListener('click', function () { return clickLi(li, availableClarity); });
+            GM_registerMenuCommand(availableClarity, function () { return clickLi(li, availableClarity); });
         });
         if (selectedClarity === Clarities[0]) {
-            list[0].click();
+            clickClarity(list[0]);
         }
         else if (selectedClarity === Clarities[1]) {
-            list[list.length - 1].click();
+            clickClarity(list[list.length - 1]);
         }
         else if (notFoundCount === list.length) {
             if (defaultClarity === 0) {
-                list[list.length - 1].click();
+                clickClarity(list[list.length - 1]);
             }
             else {
-                list[0].click();
+                clickClarity(list[0]);
             }
         }
         Clarities.forEach(function (clarity, index) {
             GM_registerMenuCommand(clarity, function () {
                 if (index === 0) {
-                    list[index].click();
+                    clickClarity(list[0]);
                     GM_setValue('defaultClarity', 1);
                 }
                 else {
-                    list[list.length - 1].click();
+                    clickClarity(list[list.length - 1]);
                     GM_setValue('defaultClarity', 0);
                 }
             });
