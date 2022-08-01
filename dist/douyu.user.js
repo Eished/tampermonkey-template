@@ -190,4 +190,3 @@ exports.isTampermonkey = isTampermonkey;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=douyu.user.js.map
