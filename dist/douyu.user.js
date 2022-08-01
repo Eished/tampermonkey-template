@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name                斗鱼直播助手
 // @namespace           https://github.com/Eished/douyu-helper
-// @version             2022.07.31.3
-// @description         斗鱼直播自动切换画质，全局设置最高画质或最低画质，可单独设置每个直播间：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度，自动记忆并切换到上次选择的画质。
+// @version             2022.08.01
+// @description         斗鱼直播自动切换画质，全局设置最高画质或最低画质，可单独设置每个直播间画质：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度，自动记忆并切换到上次选择的画质。
 // @author              Eished
 // @copyright           Eished
 // @license             MIT
@@ -26,7 +26,23 @@
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var app = function (rid, videoSub) {
+var app = function () {
+    var rid = new URLSearchParams(window.location.search).get('rid');
+    if (!rid) {
+        var results = window.location.pathname.match(/[\d]{1,10}/);
+        if (results) {
+            rid = results[0];
+        }
+        else {
+            return;
+        }
+    }
+    var videoSub = document.querySelector('.layout-Player-videoSub');
+    if (rid && videoSub) {
+        autoSelectClarity(rid, videoSub);
+    }
+};
+var autoSelectClarity = function (rid, videoSub) {
     var Clarities = ['全局默认最高画质', '全局默认最低画质'];
     var selectedClarity = GM_getValue(rid);
     var defaultClarity = GM_getValue('defaultClarity');
@@ -34,7 +50,7 @@ var app = function (rid, videoSub) {
         if (save === void 0) { save = false; }
         // 阻止点击事件循环
         if (!li.className.includes('selected')) {
-            save ? GM_setValue(rid, li.innerText) : '';
+            save ? GM_setValue(rid, li.innerText) : null;
             li.click();
         }
     };
@@ -106,20 +122,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var app_1 = __importDefault(__webpack_require__(752));
-var rid = new URLSearchParams(window.location.search).get('rid');
-if (!rid) {
-    var results = window.location.pathname.match(/[\d]{1,10}/);
-    if (results) {
-        rid = results[0];
-    }
-    else {
-        throw new Error('斗鱼直播助手：未找到直播间id');
-    }
+var environment_1 = __webpack_require__(171);
+if (true) {
+    (0, app_1.default)();
 }
-var videoSub = document.querySelector('.layout-Player-videoSub');
-if (rid && videoSub) {
-    (0, app_1.default)(rid, videoSub);
-}
+else {}
+
+
+/***/ }),
+
+/***/ 171:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isTampermonkey = void 0;
+/**
+ * 判断运行环境，阻止本地webpack注入的重复js代码执行
+ */
+var isTampermonkey = function () {
+    var tampermonkey = true;
+    try {
+        GM_info;
+    }
+    catch (err) {
+        tampermonkey = false;
+    }
+    return tampermonkey;
+};
+exports.isTampermonkey = isTampermonkey;
 
 
 /***/ })
@@ -159,3 +190,4 @@ if (rid && videoSub) {
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=douyu.user.js.map
