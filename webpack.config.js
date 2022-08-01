@@ -140,7 +140,7 @@ module.exports = (env) => {
       },
     },
     mode: PRODUCTION ? 'production' : 'development',
-    devtool: 'source-map',
+    // devtool: 'source-map', // 严重影响打包速度
     plugins: [
       new webpack.BannerPlugin({
         banner: getBanner(banner),
