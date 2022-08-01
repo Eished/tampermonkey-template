@@ -1,4 +1,21 @@
-const app = (rid: string, videoSub: Element) => {
+const app = () => {
+  let rid = new URLSearchParams(window.location.search).get('rid');
+  if (!rid) {
+    const results = window.location.pathname.match(/[\d]{1,10}/);
+    if (results) {
+      rid = results[0];
+    } else {
+      return;
+    }
+  }
+  const videoSub = document.querySelector('.layout-Player-videoSub');
+
+  if (rid && videoSub) {
+    autoSelectClarity(rid, videoSub);
+  }
+};
+
+const autoSelectClarity = (rid: string, videoSub: Element) => {
   const Clarities = ['全局默认最高画质', '全局默认最低画质'];
   const selectedClarity: string | undefined = GM_getValue(rid);
   const defaultClarity: number | undefined = GM_getValue('defaultClarity');
@@ -6,7 +23,7 @@ const app = (rid: string, videoSub: Element) => {
   const clickClarity = (li: HTMLLIElement, save = false) => {
     // 阻止点击事件循环
     if (!li.className.includes('selected')) {
-      save ? GM_setValue(rid, li.innerText) : '';
+      save ? GM_setValue(rid, li.innerText) : null;
       li.click();
     }
   };

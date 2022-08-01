@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const commonMeta = require('./src/common.meta.json');
 
 const year = new Date().getFullYear();
@@ -22,10 +22,10 @@ const relativePath = (p) => path.join(process.cwd(), p);
 const src = relativePath('src');
 
 module.exports = (env) => {
-  console.log(env);
+  const PRODUCTION = env.production;
 
   const banner = {};
-  if (!env.production) {
+  if (!PRODUCTION) {
     banner.name = '斗鱼直播助手-dev';
     banner.namespace = 'douyu-helper-dev';
     banner.match = ['*://*.douyu.com/*', '*://*.localhost/*'];
@@ -36,7 +36,7 @@ module.exports = (env) => {
     entry: './src/index.ts',
     output: {
       path: resolve(__dirname, 'dist'),
-      filename: env.production ? 'douyu.user.js' : 'douyu.dev.user.js',
+      filename: PRODUCTION ? 'douyu.user.js' : 'douyu.dev.user.js',
       publicPath: '/',
     },
     externals: {},
@@ -139,18 +139,21 @@ module.exports = (env) => {
         '@': src,
       },
     },
-    mode: env.production ? 'production' : 'development',
-    // devtool: 'source-map',
+    mode: PRODUCTION ? 'production' : 'development',
+    devtool: 'source-map',
     plugins: [
       new webpack.BannerPlugin({
         banner: getBanner(banner),
         raw: true,
         entryOnly: true,
       }),
+      new webpack.DefinePlugin({
+        PRODUCTION,
+      }),
     ],
   };
 
-  if (!env.production) {
+  if (!PRODUCTION) {
     options.devServer = {
       static: {
         directory: path.join(__dirname, 'public'),
@@ -159,8 +162,14 @@ module.exports = (env) => {
       port: 8080,
       hot: true,
       open: true,
-      watchFiles: ['src/**/*.ts', 'pulic/'], // 无效
+      watchFiles: ['src/**/*.ts', 'public/'], // 配合 HtmlWebpackPlugin 才能热刷新，热刷新代码在注入的 js 里面
     };
+    options.plugins.push(
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        inject: 'head',
+      })
+    );
   }
 
   return options;

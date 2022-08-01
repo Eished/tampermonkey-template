@@ -1,16 +1,12 @@
-import app from './app';
+import app from '@/app';
+import { isTampermonkey } from '@/lib/environment';
 
-let rid = new URLSearchParams(window.location.search).get('rid');
-if (!rid) {
-  const results = window.location.pathname.match(/[\d]{1,10}/);
-  if (results) {
-    rid = results[0];
-  } else {
-    throw new Error('斗鱼直播助手：未找到直播间id');
+if (PRODUCTION) {
+  app();
+} else {
+  // 本地可开发时注入页面的js，不是油猴环境则不运行。
+  // 开启压缩后 webpack 在生产环境构建会把这部分代码删掉。
+  if (isTampermonkey()) {
+    app();
   }
-}
-const videoSub = document.querySelector('.layout-Player-videoSub');
-
-if (rid && videoSub) {
-  app(rid, videoSub);
 }

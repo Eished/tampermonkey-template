@@ -26,6 +26,7 @@ export interface GenericObject {
 
 declare global {
   const unsafeWindow: Window & typeof globalThis;
+  const PRODUCTION: boolean;
 
   interface MonkeyXhrResponse {
     finalUrl: string;
