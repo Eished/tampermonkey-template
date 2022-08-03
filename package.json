@@ -4,9 +4,9 @@
   "description": "斗鱼直播自动切换分辨率，全局设置最高画质或最低画质，单独设置每个直播间：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度。",
   "main": "/dist/douyu.user.js",
   "scripts": {
-    "start": "webpack serve",
-    "dev": "webpack --watch",
-    "build": "yarn lint && webpack --env production",
+    "start": "webpack serve --config ./config/webpack.dev.js",
+    "dev": "webpack --watch --config ./config/webpack.dev.js",
+    "build": "yarn lint && webpack --config ./config/webpack.prod.js",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix"
   },
