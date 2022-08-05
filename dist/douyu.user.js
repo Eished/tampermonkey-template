@@ -13,7 +13,6 @@
 // @grant               GM_getValue
 // @grant               GM_setValue
 // @grant               GM_registerMenuCommand
-// @grant               GM_addValueChangeListener
 // @icon                https://www.google.com/s2/favicons?domain=douyu.com
 // ==/UserScript==
 /* eslint-disable */ /* spell-checker: disable */
