@@ -44,9 +44,9 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 ## 在线调试
 
-使用 `GM_addValueChangeListener` 在线调试自动热刷新。
+受到 `scriptcat` 后台脚本与油猴脚本通信方式的启发，使用 `GM_addValueChangeListener` 来实现在线调试自动热刷新。
 
-本地修改文件后会更新 `localhost`，`localhost` 的油猴脚本会修改 `refresh` 的值，在线网页运行的油猴脚本会监听这个值的变化来刷新自己。
+本地修改文件后会更新 `localhost` 网页，`localhost` 网页的油猴脚本会修改 `refresh` 的值，在线网页运行的油猴脚本会监听这个值的变化来刷新自己。
 
 ## 手动发布项目
 
