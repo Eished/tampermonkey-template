@@ -44,9 +44,9 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 ## 在线调试
 
-由于跨域无法使用热刷新。
+使用 `GM_addValueChangeListener` 在线调试自动热刷新。
 
-只需要运行 `yarn dev` 生成脚本，让 tampermonkey 使用，修改后手动刷新网页。
+本地修改文件后会更新 `localhost`，`localhost` 的油猴脚本会修改 `refresh` 的值，在线网页运行的油猴脚本会监听这个值的变化来刷新自己。
 
 ## 手动发布项目
 

@@ -7,7 +7,11 @@ if (PRODUCTION) {
   import('@/lib/environment').then(({ isTampermonkey }) => {
     if (isTampermonkey()) {
       // 开发环境油猴脚本从这里开始运行
-      app();
+      import('@/lib/hotReload').then(({ hotReload }) => {
+        // 载入在线调试热刷新
+        hotReload();
+        app();
+      });
     } else {
       // 运行不需要油猴环境的js，用于模拟目标网页原本逻辑。不需要模拟可以删除
       import('@/mock/douyuPlayer').then(({ douyuPlayer }) => {
