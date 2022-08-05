@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 module.exports = {
   parser: '@typescript-eslint/parser', // 定义ESLint的解析器
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'], //定义文件继承的子规范
@@ -18,8 +19,12 @@ module.exports = {
   },
   rules: {
     // 自定义的一些规则
-    'prettier/prettier': 'error',
-    'linebreak-style': ['error', 'unix'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'valid-typeof': [
       'warn',
       {
