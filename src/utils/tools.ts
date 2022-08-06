@@ -1,4 +1,4 @@
-import { GenericObject } from '@/global';
+import { GenericObject } from '@/commonType';
 
 // POST返回 xml数据类型转换成 字符串或html 模块
 function turnCdata(xmlRepo: XMLDocument) {
@@ -76,10 +76,7 @@ function compaObjKey(source: GenericObject, target: GenericObject) {
 }
 
 // 赋值对象的值
-function copyObjVal(
-  target: GenericObject & GenericObject,
-  source: GenericObject & GenericObject
-): GenericObject & GenericObject {
+function copyObjVal(target: GenericObject, source: GenericObject): GenericObject {
   Object.keys(source).forEach((key) => {
     if (source[key] && Object.prototype.hasOwnProperty.call(target, key)) {
       target[key] = source[key];

@@ -20,10 +20,6 @@ export type XhrOptions = {
   contentType: XhrResponseType;
 };
 
-export interface GenericObject {
-  [key: string]: any;
-}
-
 declare global {
   const unsafeWindow: Window & typeof globalThis;
   const PRODUCTION: boolean;
@@ -126,7 +122,7 @@ declare global {
   function GM_registerMenuCommand(name: string, callback: () => void): void;
   function GM_addValueChangeListener(
     name: string,
-    callback: (name: string, old_value: any, new_value: any, remote: any) => void
+    callback: (name: string, old_value: any, new_value: any, remote: boolean) => void
   ): number;
 }
 export {};
