@@ -58,6 +58,21 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 修改油猴头文件 `config/common.meta.json` 的 `"match": "*://*.xxx.com/*",`
 
+## 使用 JavaScript 开发
+
+将文件后缀改为 `.js` 即可
+
+`.eslintrc.js` 加入规则，用于忽略未定义的值报错以兼容油猴 API
+
+```javascript
+  rules: {
+    ...
+    'no-undef': 'off',
+  },
+```
+
+如果想让 JavaScript 支持类型检查，在 `tsconfig.json` 修改 `"checkJs": true`
+
 ## 参考项目及其文档
 
 https://bilibili-evolved-doc.vercel.app/developer
