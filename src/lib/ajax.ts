@@ -2,7 +2,6 @@ import { IMPORTANCE } from '@/commonType';
 import { XhrMethod, XhrOptions, XhrResponseType } from '@/global';
 import { MessageBox } from '@/lib/message';
 
-// GM_xmlhttpRequest GET异步通用模块
 export const getData = (
   url: string,
   type: XhrResponseType = XhrResponseType.DOCUMENT,
@@ -33,7 +32,6 @@ export const getData = (
   });
 };
 
-// 正常的post
 export const postData = (
   url: string,
   postData: string,

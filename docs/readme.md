@@ -73,6 +73,16 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 如果想让 JavaScript 支持类型检查，在 `tsconfig.json` 修改 `"checkJs": true`
 
+## 一些实用的库
+
+网络请求：
+
+`src/lib/ajax.ts`
+
+消息通知：
+
+`src/lib/message.ts`
+
 ## 参考项目及其文档
 
 https://bilibili-evolved-doc.vercel.app/developer
