@@ -30,17 +30,19 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 `dist/douyu.dev.user.js` 复制油猴**头文件**，在浏览器油猴插件新建脚本，粘贴进去，刷新打开的本地页面，油猴脚本即可正常运行。
 
+`ctrl shift B` 选择 `start & dev` 实际运行了两个命令，单独运行也可以：
+
+- `yarn start` devServer 提供 web 服务和网页热刷新功能
+
+- `yarn dev` 生成脚本，让 tampermonkey 使用
+
 ## 在本地调试脚本
 
 把目标网站的静态资源（`html、JavaScript`）下载，复制到 `public` 文件夹下，插入到 `index.html` 即可本地调试脚本静态功能。
 
 如果不能下载，需要先分析其运行逻辑，在 `src/mock` 文件夹内添加模拟运行逻辑，以方便本地调试。
 
-`ctrl shift B` 选择 `start & dev` 实际运行了两个命令，单独运行也可以：
-
-- `yarn start` devServer 提供 web 服务和网页热刷新功能
-
-- `yarn dev` 生成脚本，让 tampermonkey 使用
+在 `src/app.ts` 编写油猴代码，确保 `app.ts` 的默认导出函数是入口函数，否则可能影响 webpack 打包。
 
 ## 在线调试
 
