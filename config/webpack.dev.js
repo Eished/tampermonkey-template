@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { baseOptions, getBanner } = require('./webpack.config.base');
 const devBanner = require('./dev.meta.json');
 
-module.exports = () => {
-  baseOptions.output.filename = 'douyu.dev.user.js';
+module.exports = (env) => {
+  baseOptions.output.filename = env.filename;
   baseOptions.plugins.push(
     new webpack.BannerPlugin({
       banner: getBanner(devBanner),

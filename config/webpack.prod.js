@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const { baseOptions, getBanner } = require('./webpack.config.base');
 
-module.exports = () => {
-  baseOptions.output.filename = 'douyu.user.js';
+module.exports = (env) => {
+  baseOptions.output.filename = env.filename;
   baseOptions.plugins.push(
     new webpack.BannerPlugin({
       banner: getBanner({}),

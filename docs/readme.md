@@ -73,6 +73,17 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 如果想让 JavaScript 支持类型检查，在 `tsconfig.json` 修改 `"checkJs": true`
 
+## 修改输出文件名
+
+修改 `package.json` 里面 `filename=<新文件名>`
+
+```javascript
+ "scripts": {
+    "dev": "xxxxx --env filename=douyu.dev.user.js",
+    "build": "xxxx --env filename=douyu.user.js",
+  },
+```
+
 ## 一些实用的库
 
 网络请求：
