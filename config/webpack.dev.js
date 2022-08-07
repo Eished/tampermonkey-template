@@ -14,15 +14,21 @@ module.exports = (env) => {
     }),
     new webpack.DefinePlugin({
       PRODUCTION: false,
+      FILENAME: JSON.stringify(env.filename),
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     })
   );
   baseOptions.devServer = {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
+    static: [
+      {
+        directory: path.join(__dirname, '../public'),
+      },
+      {
+        directory: path.join(__dirname, '../dist'),
+      },
+    ],
     compress: true,
     port: 8080,
     hot: true,

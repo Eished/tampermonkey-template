@@ -22,6 +22,7 @@ export type XhrOptions = {
 
 declare global {
   const PRODUCTION: boolean;
+  const FILENAME: string;
 
   interface MonkeyXhrResponse {
     finalUrl: string;

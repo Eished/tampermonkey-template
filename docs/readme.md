@@ -26,7 +26,11 @@
 
 `ctrl shift B` 选择 `start & dev`
 
-VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
+> VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
+
+第一次启动时，将会自动安装油猴脚本。
+
+或者手动安装：
 
 `dist/douyu.dev.user.js` 复制油猴**头文件**，在浏览器油猴插件新建脚本，粘贴进去，刷新打开的本地页面，油猴脚本即可正常运行。
 
@@ -81,6 +85,7 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 ```javascript
  "scripts": {
+    "start": "xxxxx --env filename=douyu.dev.user.js",
     "dev": "xxxxx --env filename=douyu.dev.user.js",
     "build": "xxxx --env filename=douyu.user.js",
   },
