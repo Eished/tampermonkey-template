@@ -98,4 +98,8 @@ VSCode Task See https://go.microsoft.com/fwlink/?LinkId=733558
 
 ## 参考项目及其文档
 
+https://github.com/the1812/Bilibili-Evolved
+
 https://bilibili-evolved-doc.vercel.app/developer
+
+https://github.com/lisonge/vite-plugin-monkey

@@ -21,7 +21,6 @@ export type XhrOptions = {
 };
 
 declare global {
-  const unsafeWindow: Window & typeof globalThis;
   const PRODUCTION: boolean;
 
   interface MonkeyXhrResponse {
@@ -108,21 +107,6 @@ declare global {
     isIncognito: boolean;
     version: string;
   }
-  const GM_info: MonkeyInfo;
   function GM_xmlhttpRequest(details: MonkeyXhrDetails): { abort: () => void };
-  function GM_setValue<T>(name: string, value: T): void;
-  function GM_getValue<T>(name: string, defaultValue?: T): T;
-  function GM_deleteValue(name: string): void;
-  function GM_getResourceText(name: string): string;
-  function GM_getResourceURL(name: string): string;
-  function GM_addStyle(name: string): string;
-  function GM_addElement(name: string): string;
-  function GM_notification(name: string): string;
-  function GM_openInTab(name: string): string;
-  function GM_registerMenuCommand(name: string, callback: () => void): void;
-  function GM_addValueChangeListener(
-    name: string,
-    callback: (name: string, old_value: any, new_value: any, remote: boolean) => void
-  ): number;
 }
 export {};
