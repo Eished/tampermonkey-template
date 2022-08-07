@@ -48,7 +48,6 @@ var autoSelectClarity = function (rid, videoSub) {
     var defaultClarity = GM_getValue('defaultClarity');
     var clickClarity = function (li, save) {
         if (save === void 0) { save = false; }
-        // 阻止点击事件循环
         if (!li.className.includes('selected')) {
             save ? GM_setValue(rid, li.innerText) : null;
             li.click();
