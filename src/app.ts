@@ -21,7 +21,6 @@ const autoSelectClarity = (rid: string, videoSub: Element) => {
   const defaultClarity: number | undefined = GM_getValue('defaultClarity');
 
   const clickClarity = (li: HTMLLIElement, save = false) => {
-    // 阻止点击事件循环
     if (!li.className.includes('selected')) {
       save ? GM_setValue(rid, li.innerText) : null;
       li.click();

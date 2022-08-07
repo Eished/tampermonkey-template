@@ -18,6 +18,7 @@ module.exports = (env) => {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      inject: 'body',
     })
   );
   baseOptions.devServer = {
@@ -31,8 +32,10 @@ module.exports = (env) => {
     ],
     compress: true,
     port: 8080,
-    hot: true,
+    hot: false,
     open: true,
+    liveReload: true,
+    watchFiles: ['src/**/*', 'public/**/*'],
   };
   baseOptions.mode = 'development';
 

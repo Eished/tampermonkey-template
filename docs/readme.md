@@ -101,6 +101,30 @@
 
 `src/lib/message.ts`
 
+## 关于 HMR 热模块替换
+
+由于 JavaScript 是油猴插入的，所以不支持 HMR，只支持 live reload 热重载。
+
+开启 HMR：`config/webpack.dev.js`
+
+```javascript
+baseOptions.devServer = {
+  static: [
+    {
+      directory: path.join(__dirname, '../public'),
+    },
+    {
+      directory: path.join(__dirname, '../dist'),
+    },
+  ],
+  compress: true,
+  port: 8080,
+  hot: true,
+  open: true,
+  liveReload: false,
+};
+```
+
 ## 参考项目及其文档
 
 https://github.com/the1812/Bilibili-Evolved
