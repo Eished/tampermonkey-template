@@ -103,7 +103,9 @@
 
 ## 关于 HMR 热模块替换
 
-由于 JavaScript 是油猴插入的，所以不支持 HMR，只支持 live reload 热重载。
+由于油猴插入的 JavaScript 运行在油猴环境，不支持 HMR，仅支持 live reload 热重载，默认开启热重载。
+
+在本地模拟环境中的 JavaScript 是 webpack 打包的，支持 HMR，需要大量本地模拟时可自行开启 HMR。
 
 开启 HMR：`config/webpack.dev.js`
 
