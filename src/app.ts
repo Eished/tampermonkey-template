@@ -17,8 +17,8 @@ const app = () => {
 
 const autoSelectClarity = (rid: string, videoSub: Element) => {
   const Clarities = ['全局默认最高画质', '全局默认最低画质'];
-  const selectedClarity: string | undefined = GM_getValue(rid);
-  const defaultClarity: number | undefined = GM_getValue('defaultClarity');
+  const selectedClarity: string | null = GM_getValue(rid);
+  const defaultClarity: number | null = GM_getValue('defaultClarity');
 
   const clickClarity = (li: HTMLLIElement, save = false) => {
     if (!li.className.includes('selected')) {
@@ -37,6 +37,9 @@ const autoSelectClarity = (rid: string, videoSub: Element) => {
         } else {
           clickClarity(list[list.length - 1]);
           GM_setValue('defaultClarity', 0);
+        }
+        if (selectedClarity) {
+          GM_setValue(rid, null);
         }
       });
     });
