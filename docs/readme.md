@@ -131,6 +131,6 @@ baseOptions.devServer = {
 
 https://github.com/the1812/Bilibili-Evolved
 
-https://bilibili-evolved-doc.vercel.app/developer
+https://github.com/Eished/jkforum_helper
 
 https://github.com/lisonge/vite-plugin-monkey
