@@ -4,14 +4,12 @@ if (PRODUCTION) {
   app();
 } else {
   // 在生产环境打包时 webpack 会把 else 部分代码移除。使用动态导入就不会把这些代码打包进生产环境
-  import('@/lib/environment').then(({ isTampermonkey }) => {
+  import('@/lib/dev').then(({ isTampermonkey, hotReload }) => {
     if (isTampermonkey()) {
       // 开发环境油猴脚本从这里开始运行
-      import('@/lib/hotReload').then(({ hotReload }) => {
-        // 载入在线调试热刷新
-        hotReload();
-        app();
-      });
+      // 载入在线调试热刷新
+      hotReload();
+      app();
     } else {
       // 第一次启动时自动安装油猴脚本
       import('@/mock/autoInstall').then(({ autoInstall }) => {
