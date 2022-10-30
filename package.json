@@ -7,7 +7,7 @@
     "start": "webpack serve --config ./config/webpack.dev.js --env filename=douyu.dev.user.js",
     "dev": "webpack --watch --config ./config/webpack.dev.js --env filename=douyu.dev.user.js",
     "build": "yarn lint:fix && webpack --config ./config/webpack.prod.js --env filename=douyu.user.js",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "yarn lint --fix"
   },
   "repository": {
