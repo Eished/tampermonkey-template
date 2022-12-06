@@ -1,5 +1,7 @@
+// 开发环境相关工具函数，请勿删除本文件
+
 /**
- * 判断运行环境，阻止本地webpack注入的重复js代码执行
+ * 判断运行环境，阻止 webpack 重复注入 js 代码
  */
 export const isTampermonkey = () => {
   let tampermonkey = true;
@@ -25,5 +27,16 @@ export const hotReload = () => {
       }
     };
     GM_addValueChangeListener('refresh', callback);
+  }
+};
+
+/**
+ * 首次运行时自动安装
+ */
+export const autoInstall = () => {
+  const isNewInstall = localStorage.getItem('isNewInstall');
+  if (!isNewInstall) {
+    window.open(FILENAME, 'self');
+    localStorage.setItem('isNewInstall', 'false');
   }
 };
