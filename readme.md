@@ -7,9 +7,10 @@
 ## 本项目作为油猴开发模板的优点
 
 - [x] 配置简单
-- [x] 符合前端工程化开发习惯，和前端开发框架一致的开发体验
-- [x] 支持本地网页热刷新和在线网页热刷新
-- [x] 支持本地模拟在线网页，网页加载和调试速度更快
+- [x] 和前端开发框架一致的开发体验
+- [x] 支持本地网页自动热刷新和目标网站自动热刷新
+- [x] 支持本地模拟目标网站，网页加载速度快，大幅提高开发效率
+- [x] 支持 Tampermonkey API 提示和自动补全
 
 ## 开发环境
 
@@ -59,9 +60,11 @@
 
 > 确保 `app.ts` 的默认导出函数是入口函数，否则可能影响 webpack 打包。
 
-## 在线调试和开发脚本
+## 在目标网站上调试和开发脚本
 
-和本地调试脚本相同，但只有 `src/app.ts` 内的代码会在目标在线网站上运行。
+和本地调试脚本相同。
+
+注意：在线调试时不能关闭本地调试的网页窗口，目标网站自动热刷新依赖于本地网页运行的油猴脚本。
 
 ## 手动发布项目
 
@@ -79,9 +82,9 @@
 
 ```javascript
  "scripts": {
-    "start": "xxxxx --env filename=douyu.dev.user.js",
-    "dev": "xxxxx --env filename=douyu.dev.user.js",
-    "build": "xxxx --env filename=douyu.user.js",
+    "start": "xxxxx --env filename=douyu.dev.user.js", // 开发环境脚本的文件名
+    "dev": "xxxxx --env filename=douyu.dev.user.js", // 开发环境脚本的文件名
+    "build": "xxxx --env filename=douyu.user.js", // 生产环境脚本的文件名
   },
 ```
 
