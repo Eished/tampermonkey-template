@@ -67,17 +67,18 @@ const baseOptions = {
         use: [
           // use 数组中 loader 执行顺序：从右到左，从下到上 依次执行
           // 创建 style 标签，将 js 中的样式资源插入进行，添加到 head 中生效
-          // GM_addStyle 不需要 style-loader
-          // 'style-loader',
-          'to-string-loader',
+          'style-loader',
+          'css-loader',
+          // 'to-string-loader',
           // 将 css 文件变成 commonjs 模块加载 js 中，里面内容是样式字符串
-          // esModule: false 可以 toString()
-          {
-            loader: 'css-loader',
-            options: {
-              esModule: false,
-            },
-          },
+          // GM_addStyle 不需要 style-loader
+          // esModule: false 时可以 toString() 后使用 GM_addStyle 插入 css
+          // {
+          //   loader: 'css-loader',
+          //   options: {
+          //     esModule: false,
+          //   },
+          // },
         ],
         include: [src],
       },

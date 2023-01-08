@@ -1,4 +1,8 @@
-import { IMPORTANCE } from '@/commonType';
+export const enum IMPORTANCE {
+  LOG_POP = 1,
+  LOG_POP_GM = 2,
+  POP = 3,
+}
 
 // 需要手动增加 GM_addStyle 和 GM_notification 权限
 /**

@@ -1,6 +1,6 @@
-import { IMPORTANCE } from '@/commonType';
 import { XhrMethod, XhrOptions, XhrResponseType } from '@/global';
 import { MessageBox } from '@/lib/message';
+import { IMPORTANCE } from './message';
 
 export const getData = (
   url: string,
