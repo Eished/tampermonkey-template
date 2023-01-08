@@ -1,6 +1,8 @@
 以斗鱼直播自动切换清晰度作为示例的油猴脚本开发模板
 
-[模板使用视频教程](https://www.bilibili.com/video/BV1oB4y1478c)
+[模板使用的视频教程](https://www.bilibili.com/video/BV1oB4y1478c)
+
+[使用此模板创建项目](https://github.com/Eished/monkey-template/generate)
 
 ## 本项目作为油猴开发模板的优点
 
@@ -28,7 +30,6 @@
 ```
 
 > 油猴头文件默认配置在 `config/common.meta.json`，按需修改。
->
 
 ## 启动项目
 
@@ -45,7 +46,6 @@
 > - `yarn start` devServer 提供 web 服务和网页热刷新功能
 >
 > - `yarn dev` 生成脚本，让 tampermonkey 使用
->
 
 ## 本地调试和开发脚本
 
