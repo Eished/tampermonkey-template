@@ -27,7 +27,7 @@
 修改开发环境油猴头文件信息：[`config/dev.meta.json`](config/dev.meta.json) 内下述代码改为自己存放项目的文件路径。
 
 ```json
-"require": ["file://<你的文件路径>/douyu-helper/dist/douyu.dev.user.js"]
+"require": ["file://<你的文件路径>/tampermonkey-template/dist/douyu.dev.user.js"]
 ```
 
 > 油猴头文件默认配置在 [`config/common.meta.json`](config/common.meta.json)，按需修改。
@@ -50,11 +50,11 @@
 
 ## 本地调试和开发脚本
 
-本地调试方法1：
+本地调试方法 1：
 
 把目标网站的静态资源 `html、css、JavaScript` 等下载到本地，复制到 `public` 文件夹下，插入到 `index.html` 即可本地调试脚本静态功能。
 
-本地调试方法2（本示例采用的方法）：
+本地调试方法 2（本示例采用的方法）：
 
 如果不能下载，需要先分析其运行逻辑，在 [`src/mock`](src/mock) 文件夹内添加模拟运行逻辑，以方便本地调试。
 
@@ -90,7 +90,7 @@
 
 修改 [`package.json`](package.json) 里面 `filename=<新文件名>`
 
-```javascript
+```json
  "scripts": {
     "start": "xxxxx --env filename=douyu.dev.user.js", // 开发环境脚本的文件名
     "dev": "xxxxx --env filename=douyu.dev.user.js", // 开发环境脚本的文件名
@@ -98,9 +98,24 @@
   },
 ```
 
-## 引入 css
+## 引入 CSS
 
 默认支持 css 和 less，参考 [`src/mock/douyu.less`](src/mock/douyu.less)
+
+## 安装依赖
+
+`yarn add <安装的包名>` 或者 `npm install <安装的包名>`
+
+Webpack 会自动将依赖打包进 [`dist/douyu.user.js`](dist/douyu.user.js)，如果生产环境打包大小超过 2MB，可以启用代码压缩。
+
+开启代码压缩：`config/webpack.config.base.js`
+
+```javascript
+optimization: {
+  minimize: true,
+  ...
+}
+```
 
 ## 使用网站已有的全局变量
 
@@ -128,19 +143,10 @@ declare global {
 
 ```javascript
 baseOptions.devServer = {
-  static: [
-    {
-      directory: path.join(__dirname, '../public'),
-    },
-    {
-      directory: path.join(__dirname, '../dist'),
-    },
-  ],
-  compress: true,
-  port: 8080,
+  ...
   hot: true,
-  open: true,
   liveReload: false,
+  ...
 };
 ```
 

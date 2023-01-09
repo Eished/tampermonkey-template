@@ -1,7 +1,7 @@
 {
-  "name": "douyu-helper",
+  "name": "tampermonkey-template",
   "version": "0.0.1",
-  "description": "斗鱼直播自动切换分辨率，全局设置最高画质或最低画质，单独设置每个直播间：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度。",
+  "description": "以斗鱼直播自动切换清晰度作为示例的油猴脚本开发模板",
   "main": "/dist/douyu.user.js",
   "scripts": {
     "start": "webpack serve --config ./config/webpack.dev.js --env filename=douyu.dev.user.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eished/douyu-helper.git"
+    "url": "https://github.com/Eished/tampermonkey-template.git"
   },
   "keywords": [
     "douyu",
@@ -22,9 +22,9 @@
   "author": "Eished",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Eished/douyu-helper/issues"
+    "url": "https://github.com/Eished/tampermonkey-template/issues"
   },
-  "homepage": "https://github.com/Eished/douyu-helper#readme",
+  "homepage": "https://github.com/Eished/tampermonkey-template",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
@@ -42,7 +42,6 @@
     "less-loader": "^10.2.0",
     "prettier": "^2.6.2",
     "style-loader": "^3.3.1",
-    "to-string-loader": "^1.2.0",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",
     "webpack": "^5.72.0",

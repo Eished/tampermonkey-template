@@ -3,5 +3,5 @@
   "namespace": "https://github.com/Eished/douyu-helper-dev",
   "match": ["*://*.douyu.com/*", "*://*.localhost/*"],
   "grant": ["GM_getValue", "GM_setValue", "GM_registerMenuCommand", "GM_addValueChangeListener"],
-  "require": ["file://\\\\wsl$\\Ubuntu-20.04\\home\\eis\\web\\douyu-helper\\dist\\douyu.dev.user.js"]
+  "require": ["file://\\\\wsl$\\Ubuntu-20.04\\home\\eis\\web\\tampermonkey-template\\dist\\douyu.dev.user.js"]
 }
