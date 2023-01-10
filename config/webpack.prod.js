@@ -14,6 +14,7 @@ module.exports = (env) => {
     })
   );
   baseOptions.mode = 'production';
+  baseOptions.externals = {};
 
   return baseOptions;
 };

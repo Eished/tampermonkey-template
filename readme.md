@@ -104,11 +104,41 @@
 
 ## 安装依赖
 
-`yarn add <安装的包名>` 或者 `npm install <安装的包名>`
+`yarn add <安装的包名>` 或者 `npm install <安装的包名>`，Webpack 会自动将依赖打包进 [`dist/douyu.user.js`](dist/douyu.user.js)。
 
-Webpack 会自动将依赖打包进 [`dist/douyu.user.js`](dist/douyu.user.js)，如果生产环境打包大小超过 2MB，可以启用代码压缩。
+### 排除依赖项减小发布大小
 
-开启代码压缩：`config/webpack.config.base.js`
+脚本大小不能超过 2.0 MB。如果您的脚本接近此限制，可能需考虑：
+
+- 将 URI、JSON 等非代码数据移出脚本。
+- 使用 `@require` 或 [webpack 的 `externals` 选项](https://webpack.js.org/configuration/externals/)加载库。
+
+以 `jquery` 举例：
+
+```bash
+# 安装jquery
+yarn add jquery 
+# 安装jquery类型声明作为开发依赖
+yarn add @types/jquery -D
+```
+
+[`config/common.meta.json`](https://github.com/Eished/tampermonkey-template/blob/externals/config/common.meta.json)
+
+```javascript
+"require": ["https://code.jquery.com/jquery-3.6.3.slim.min.js"]
+```
+
+[`config/webpack.prod.js`](https://github.com/Eished/tampermonkey-template/blob/externals/config/webpack.prod.js) 
+
+```javascript
+baseOptions.externals = {
+    jquery: '$', // 排除项
+  };
+```
+
+### 启用代码压缩：
+
+开启代码压缩：[`config/webpack.config.base.js`](config/webpack.config.base.js)
 
 ```javascript
 optimization: {
@@ -116,6 +146,8 @@ optimization: {
   ...
 }
 ```
+
+> 注意：提交到 Greasy Fork 的代码不得混淆或最小化。如果脚本使用了 WebPack 之类的工具打包，则必须以非最小化的形式输出，保留空白和变量名。
 
 ## 使用网站已有的全局变量
 
@@ -154,7 +186,7 @@ baseOptions.devServer = {
 
 将文件后缀改为 `.js` 即可
 
-`.eslintrc.js` 加入规则，用于忽略未定义的值报错以兼容油猴 API
+[`.eslintrc.js`](.eslintrc.js) 加入规则，用于忽略未定义的值报错以兼容油猴 API
 
 ```javascript
   rules: {

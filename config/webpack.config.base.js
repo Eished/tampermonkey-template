@@ -24,7 +24,6 @@ const baseOptions = {
   output: {
     path: resolve(__dirname, '../dist'),
   },
-  externals: {},
   module: {
     rules: [
       {
