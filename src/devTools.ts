@@ -34,9 +34,12 @@ export const hotReload = () => {
  * 首次运行时自动安装
  */
 export const autoInstall = () => {
-  const isNewInstall = localStorage.getItem('isNewInstall');
-  if (!isNewInstall) {
+  const isInstalled = localStorage.getItem(FILENAME);
+  if (!isInstalled) {
     window.open(FILENAME, 'self');
-    localStorage.setItem('isNewInstall', 'false');
+    localStorage.setItem(FILENAME, 'Installed');
+    alert(
+      '第一次自动安装后，请在脚本编辑器内把头文件以外的内容删除，不然会运行两次脚本。（操作：选中并剪切头文件->然后全选->粘贴，覆盖掉其它内容）'
+    );
   }
 };
