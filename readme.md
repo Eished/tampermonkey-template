@@ -4,13 +4,13 @@
 
 [使用此模板创建油猴脚本项目](https://github.com/Eished/monkey-template/generate)
 
-## 本项目作为油猴开发模板的优点
+## 特性
 
 - [x] 配置简单，和前端工程化开发框架一致的开发体验
 - [x] 支持本地网页自动热刷新和目标网站自动热刷新
 - [x] 支持本地模拟目标网站，网页加载速度快，大幅提高开发效率
 - [x] 使用 TypeScript + ESlint 实现类型检查、错误修正、智能补全和自动格式化
-- [x] 支持使用 `@require` 引入依赖，减小脚本体积
+- [x] 支持使用 `@require` 引入依赖，减小脚本大小
 - [x] 支持 Tampermonkey API 提示和自动补全
 
 ## 开发环境
@@ -45,9 +45,9 @@
 
 > `ctrl shift B` 选择 `start & dev` 实际运行了两个命令，单独运行也可以：
 >
-> - `yarn start` devServer 提供 web 服务和网页热刷新功能
+> - `npm run start` devServer 提供 web 服务和网页热刷新功能
 >
-> - `yarn dev` 生成脚本，让 tampermonkey 使用
+> - `npm run dev` 生成脚本，让 tampermonkey 使用
 
 ## 本地调试和开发脚本
 
@@ -75,7 +75,7 @@
 
 ## 手动发布项目
 
-运行 `yarn build`
+运行 `npm run build`
 
 生成文件文件：[`dist/douyu.user.js`](dist/douyu.user.js)
 

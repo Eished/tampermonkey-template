@@ -5,23 +5,23 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "yarn start",
+      "command": "npm run start",
       "group": "build",
       "problemMatcher": [],
-      "label": "yarn:start"
+      "label": "start"
     },
     {
       "type": "shell",
-      "command": "yarn dev",
+      "command": "npm run dev",
       "group": "build",
       "problemMatcher": [],
-      "label": "yarn:dev"
+      "label": "dev"
     },
     {
       "type": "shell",
       "label": "start & dev",
       "group": "build",
-      "dependsOn": ["yarn:start", "yarn:dev"]
+      "dependsOn": ["start", "dev"]
     }
   ]
 }

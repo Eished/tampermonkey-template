@@ -24,8 +24,8 @@ jobs:
 
       - name: Build
         run: |
-          yarn install
-          yarn build
+          npm install
+          npm run build
 
       - name: Auto build user.js to main branch
         uses: JamesIves/github-pages-deploy-action@4.1.1
