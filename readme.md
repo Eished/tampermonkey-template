@@ -26,7 +26,9 @@
 
 ## 修改配置文件
 
-修改开发环境油猴头文件信息：[`config/dev.meta.json`](config/dev.meta.json) 内下述代码改为自己存放项目的文件路径。
+先在 Chrome 浏览器管理扩展程序页 `chrome://extensions/` 内，点击油猴插件详情，打开允许访问文件网址选项。
+
+然后修改开发环境油猴头文件信息：[`config/dev.meta.json`](config/dev.meta.json) 内下述代码改为自己存放项目的文件路径。
 
 ```json
 "require": ["file://<你的文件路径>/tampermonkey-template/dist/douyu.dev.user.js"]
