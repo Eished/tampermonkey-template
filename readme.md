@@ -18,7 +18,7 @@
 
 `Node.js 14+`
 
-`yarn or npm`
+`npm or yarn`
 
 ## 开发语言
 
@@ -116,7 +116,7 @@ VSCode 内 `ctrl + shift + B` 选择 `start & dev`
 
 ## 安装依赖
 
-`yarn add <安装的包名>` 或者 `npm install <安装的包名>`，Webpack 会自动将依赖打包进 [`dist/douyu.user.js`](dist/douyu.user.js)。
+`npm install <安装的包名>` 或者 `yarn add <安装的包名>`，Webpack 会自动将依赖打包进 [`dist/douyu.user.js`](dist/douyu.user.js)。
 
 ### 排除依赖项减小脚本大小
 
@@ -129,9 +129,9 @@ VSCode 内 `ctrl + shift + B` 选择 `start & dev`
 
 ```bash
 # 安装jquery
-yarn add jquery
+npm install jquery
 # 安装jquery类型声明作为开发依赖
-yarn add @types/jquery -D
+npm install @types/jquery -D
 ```
 
 [`config/common.meta.json`](https://github.com/Eished/tampermonkey-template/blob/externals/config/common.meta.json)
