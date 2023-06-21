@@ -17,7 +17,7 @@ export const isTampermonkey = () => {
  * 提供在线调试热刷新
  */
 export const hotReload = () => {
-  if (window.location.host.includes('localhost')) {
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     const oldRefresh = GM_getValue('refresh');
     GM_setValue('refresh', !oldRefresh);
   } else {
